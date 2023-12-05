@@ -42,7 +42,7 @@ class Musician {
    // присвоєння вхідного значення instrument до приватного поля #instrument   
    this.#instrument = instrument;    
     // збільшення значення статичного поля на 1
-    couunt += 1;
+    Musician.count ++;
   }
 
   get name() {
@@ -252,7 +252,7 @@ class Band {
   }
   // Створюємо метод playMusic(), за допомогою forEach перебираємо масив і викликаємо метод play() для кожного учасника гурту
   playMusic() {
-    this.#members.forEach((member) => members.play());
+    this.#members.forEach((member) => member.play());
   }  
 }
 
@@ -272,15 +272,18 @@ class Performance {
   #date;
   // Створюємо конструктор з трьома вхідними параметрами: #band, #location та #date
   constructor(band, location, date) {
+    this.#band = band;
+    this.#location = location;
+    this.#date = date;
   }
   get band() { // Створюємо getter для #band, що повертає приватну властивість #band
-    return this.#band = band;
+    return this.#band;
   } 
   get location() {
-    return this.#location = location;// Створюємо getter для #location, що повертає приватну властивість #location
+    return this.#location;// Створюємо getter для #location, що повертає приватну властивість #location
   }
   get date() {// Створюємо getter для #date, що повертає приватну властивість #date
-    return this.#date = date;
+    return this.#date;
   }
   // Визначаємо метод info(), що виводить рядок в консоль `Гурт ${this.#band.name} виступить в ${this.#location} ${this.#date.toLocaleDateString()}` 
   info() {
@@ -307,7 +310,7 @@ class Concert extends Performance {
   }  
   // Створюємо getter для #ticketPrice, що повертає приватну властивість #ticketPrice
   get ticketPrice() {
-    return this.#ticketPrice = this.ticketPrice;
+    return this.#ticketPrice;
   }
   // Створюємо setter для #ticketPrice, що дозволяє змінити приватну властивість #ticketPrice
   set ticketPrice(newPrice){
@@ -338,11 +341,11 @@ class Vocalist {
   }
   // Створюємо getter для #name, що повертає приватну властивість #name
   get name(){
-    return this.#name = this.#name;
+    return this.#name;
   }
   // Створюємо getter для #band, що повертає приватну властивість #band
   get band() {
-    return this.#band = band;
+    return this.#band;
   }
   // Створюємо setter для #name, що дозволяє змінити приватну властивість #name
   set name(newName){
@@ -375,7 +378,7 @@ class SongWriter {
   }
   // Створюємо getter для #songs, що повертає приватну властивість #songs
   get songs() {
-    return this.#songs = songs;
+    return this.#songs;
   }
   // Створюємо метод addSong для додавання нової пісні до масиву #songs
   addSong(){
@@ -444,7 +447,7 @@ let bassist = new Bassist("Paul McCartney", "гітара", "Led Zeppelin")
  * | name        | "The Beatles"    |
  * | members     | [bassist]       |
  */
-let band = new Band("The Beatles", addMember.guitarist)
+let band = new Band("The Beatles", [bassist])
 // Додаємо guitarist до band за допомогою addMember
 
 /*
@@ -499,11 +502,11 @@ Object.assign(songwriter, LeadSinger.prototype)
 let leadsinger = new LeadSinger("Mick Jagger", "The Rolling Stones", ["Yesterday", "Hey Jude", "Let It Be"])
 // Методи для тестування розкоментувати після виконня всіх завдань
 musician.play();
-// guitarist.play();
-// bassist.play();
-// band.playMusic();
-// performance.info();
-// concert.info();
-// vocalist.info();
-// songwriter.info();
-// leadsinger.info();
+guitarist.play();
+bassist.play();
+band.playMusic();
+performance.info();
+concert.info();
+vocalist.info();
+songwriter.info();
+leadsinger.info();
